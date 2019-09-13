@@ -27,11 +27,14 @@ steps:
     command: test
     projects: '**/*StoreLib.Tests/*.csproj'
     arguments: '--configuration $(BuildConfig)'
+- task: CmdLine@2
+  inputs:
+    script: 'mkdir "NugetPackages"'
 - task: NuGetCommand@2
   inputs:
     command: 'pack'
     packagesToPack: '**/*.csproj'
-    packDestination: '**/NugetPackages/'
+    packDestination: 'NugetPackages/'
     versioningScheme: 'off'
     includeSymbols: true
 
