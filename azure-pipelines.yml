@@ -31,8 +31,7 @@ steps:
   inputs:
     command: 'pack'
     packagesToPack: '**/*.csproj'
-    configuration: '$(BuildConfig)'
     packDestination: '**/NugetPackages/'
-    versioningScheme: 'byBuildNumber'
+    versioningScheme: 'off'
     includeSymbols: true
 
