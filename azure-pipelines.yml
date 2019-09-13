@@ -1,0 +1,38 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- master
+
+pool:
+  vmImage: 'windows-2019'
+
+steps:
+- task: UseDotNet@2
+  displayName: 'Using latest DotNet $(DotNetVersion)'
+  inputs:
+    version: $(DotNetVersion)
+    includePreviewVersions: true
+- script: dotnet restore
+- task: DotNetCoreCLI@2
+  displayName: Build
+  inputs:
+    command: build
+    projects: '**/*.csproj'
+    arguments: '--configuration $(BuildConfig)'
+- task: DotNetCoreCLI@2
+  inputs:
+    command: test
+    projects: '**/*StoreLib.Tests/*.csproj'
+    arguments: '--configuration $(BuildConfig)'
+- task: NuGetCommand@2
+  inputs:
+    command: 'pack'
+    packagesToPack: '**/*.csproj'
+    configuration: '$(BuildConfig)'
+    packDestination: '**/NugetPackages/'
+    versioningScheme: 'byBuildNumber'
+    includeSymbols: true
+
