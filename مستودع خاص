@@ -1,0 +1,9 @@
+[Windows.Foundation.Metadata.ContractVersion(typeof(Windows.Foundation.UniversalApiContract), 65536)]
+[Windows.Foundation.Metadata.MarshalingBehavior(Windows.Foundation.Metadata.MarshalingType.Agile)]
+[Windows.Foundation.Metadata.Threading(Windows.Foundation.Metadata.ThreadingModel.Both)]
+[Windows.Foundation.Metadata.Activatable(65536, "Windows.Foundation.UniversalApiContract")]
+[Windows.Foundation.Metadata.Static(typeof(Windows.ApplicationModel.Resources.Core.IResourceContextStatics), 65536, "Windows.Foundation.UniversalApiContract")]
+[Windows.Foundation.Metadata.Static(typeof(Windows.ApplicationModel.Resources.Core.IResourceContextStatics3), 65536, "Windows.Foundation.UniversalApiContract")]
+[Windows.Foundation.Metadata.Static(typeof(Windows.ApplicationModel.Resources.Core.IResourceContextStatics2), 65536, "Windows.Foundation.UniversalApiContract")]
+[Windows.Foundation.Metadata.Static(typeof(Windows.ApplicationModel.Resources.Core.IResourceContextStatics4), 524288, "Windows.Foundation.UniversalApiContract")]
+public sealed class ResourceContext
