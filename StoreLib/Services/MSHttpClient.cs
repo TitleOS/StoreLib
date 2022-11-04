@@ -11,13 +11,40 @@ namespace StoreLib.Services
 {
     public class MSHttpClient : HttpClient
     {
+        private static readonly bool IsWindows = System.Runtime.InteropServices.RuntimeInformation
+                                                    .IsOSPlatform(System.Runtime.InteropServices.OSPlatform.Windows);
+        private static HttpClientHandler _handler
+        {
+            get
+            {
+                HttpClientHandler handler = new HttpClientHandler();
+                if (!IsWindows)
+                {
+                    handler.ServerCertificateCustomValidationCallback = ServerCertificateValidationCallback;
+                }
+                return handler;
+            }
+        }
+
+        private static bool ServerCertificateValidationCallback(
+            object sender,
+            System.Security.Cryptography.X509Certificates.X509Certificate certificate,
+            System.Security.Cryptography.X509Certificates.X509Chain chain,
+            System.Net.Security.SslPolicyErrors sslPolicyErrors
+        )
+        {
+
+            // TODO: Refine
+            return true;
+        }
+
         private readonly CorrelationVector _cv = new CorrelationVector();
 
         /// <summary>
         /// Instantiate MSHttpClient
         /// </summary>
         public MSHttpClient()
-            : base()
+            : base(_handler)
         {
             _cv.Init();
             base.DefaultRequestHeaders.TryAddWithoutValidation("User-Agent", "StoreLib");
